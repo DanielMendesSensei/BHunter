@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bhunter"
+version = "1.0.0"
+description = "Autonomous bug-fixing agent. Detects bugs from Sentry, analyzes root cause, generates minimal fixes, and creates GitHub PRs/Issues."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [
+    { name = "Daniel Mendes" },
+]
+keywords = ["sentry", "github", "bug-fixing", "ai-agent", "mcp", "autonomous"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: FastAPI",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Bug Tracking",
+]
+
+dependencies = [
+    "agno>=2.0.0",
+    "pydantic>=2.0.0",
+    "openai>=1.0.0",
+]
+
+[project.optional-dependencies]
+api = [
+    "fastapi>=0.100.0",
+]
+all = [
+    "bhunter[api]",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "ruff>=0.4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/DanielMendesSensei/BugHunter"
+Repository = "https://github.com/DanielMendesSensei/BugHunter.git"
+Issues = "https://github.com/DanielMendesSensei/BugHunter/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["bhunter"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/bhunter",
+    "/README.md",
+    "/LICENSE",
+    "/pyproject.toml",
+]
